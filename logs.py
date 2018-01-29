@@ -16,7 +16,6 @@ __all__ = [
 
 FORMAT = '[%(asctime)s] [%(levelname)s] [%(name)s] [%(funcName)s] %(message)s'
 DATEFORMAT = '%Y-%m-%d %H:%M:%S %z'
-DEFAULT_LEVEL = logging.DEBUG
 
 
 class Log(object):
@@ -39,6 +38,17 @@ class Log(object):
         logger.addHandler(stream_handler)
 
         self.logger = logger
+
+    def __configure_handler__(self, handler, **kwargs):
+        """Given a handler, configure its level and format"""
+
+        level = Log.level(kwargs.get('level'))
+        fmt = kwargs.get('fmt', FORMAT)
+        datefmt = kwargs.get('datefmt', DATEFORMAT)
+        formatter = logging.Formatter(fmt=fmt, datefmt=datefmt)
+        handler.setLevel(level)
+        handler.setFormatter(formatter)
+        return handler
 
     @staticmethod
     def level(name=None):
