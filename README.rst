@@ -17,7 +17,7 @@ This piece of code means exactly what is written:
  - create a log system called **my_logs** with a default logger to stdout with level **logging.DEBUG**
  - add another logger to that log system, that will log to a file with level **logging.INFO**
 
-.. warning:: The default format of logs is [%(asctime)s] [%(levelname)s] [%(name)s] [%(funcName)s] %(message)s
+The default format of logs is [%(asctime)s] [%(levelname)s] [%(name)s] [%(funcName)s] %(message)s
 
 Re-using that log system, we have
 
