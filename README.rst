@@ -28,6 +28,7 @@ Re-using that log system, we have
 
    
 And,
+
 .. code-block:: python
 
    >>> mylogs.logger.info("This message will appear both on stdout and in /tmp/default.log")
