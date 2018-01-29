@@ -53,6 +53,7 @@ class Log(object):
     @staticmethod
     def level(name=None):
         """Return a logging.name object where "name" is the log level"""
+
         name = name or 'DEBUG'
         try:
             level = getattr(logging, name)
@@ -61,5 +62,18 @@ class Log(object):
         else:
             return level
 
+    def add_file_handler(self, filename, **kwargs):
+        """Add a FileHandler"""
+
+        handler = logging.FileHandler(filename=filename)
+        handler = self.__configure_handler__(handler, **kwargs)
+        self.logger.addHandler(handler)
+
+    def set_file_handler(self, filename, **kwargs):
+        """Set a FileHandler as the default and only handler for this logger"""
+
+        handler = logging.FileHandler(filename=filename)
+        handler = self.__configure_handler__(handler, **kwargs)
+        self.logger.handlers = [handler]
 
 # EOF
